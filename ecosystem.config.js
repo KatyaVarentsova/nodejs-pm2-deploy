@@ -18,7 +18,7 @@ module.exports = {
       ref: process.env.DEPLOY_REF || 'origin/master',
       repo: process.env.DEPLOY_REPO || 'https://github.com/KatyaVarentsova/nodejs-pm2-deploy.git',
       path: process.env.DEPLOY_PATH || '/home/user/nodejs-pm2-deploy',
-      ssh_options: `StrictHostKeyChecking=no -i ${process.env.DEPLOY_SSH_KEY || 'C:\vm_access\key.ssh'}`,
+      ssh_options: `StrictHostKeyChecking=no -i ${process.env.DEPLOY_SSH_KEY || 'C:/vm_access/key.ssh'}`,
       'post-deploy': `
         cd current/backend &&
         npm install &&
