@@ -17,7 +17,12 @@ mongoose.connect(DB_ADDRESS);
 app.use(cors({
   origin: 'https://varentsova.students.nomorepartiessbs.ru',
   credentials: true,
+  methods: ['GET', 'HEAD','PUT','PATCH','POST','DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.options('*', cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
