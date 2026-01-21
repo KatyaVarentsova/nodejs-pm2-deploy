@@ -15,21 +15,9 @@ mongoose.connect(DB_ADDRESS);
 
 // Только для локальных тестов. Не используйте это в продакшене
 app.use(cors({
-  origin: 'https://varentsova.students.nomorepartiessbs.ru',
+  origin: '*',
   credentials: true,
-  methods: ['GET', 'HEAD','PUT','PATCH','POST','DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
-app.use(helmet({
-    contentSecurityPolicy: {
-      useDefaults: false,
-      directives: {
-        defaultSrc: ["'self'"],
-        imgSrc: ["'self'", "data:", "https:"],
-      },
-    },
-  }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
