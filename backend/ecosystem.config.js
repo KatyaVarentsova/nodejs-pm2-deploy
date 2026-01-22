@@ -2,15 +2,15 @@ module.exports = {
   apps: [
     {
       name: 'backend',
-      script: './dist/app.js',
-      cwd: './backend',
+      script: 'npm run start',
       env_production: {
         NODE_ENV: 'production',
         PORT: process.env.PORT || 3000,
         DB_ADDRESS: process.env.DB_ADDRESS || 'mongodb://localhost:27017/mestodb',
       },
-    }
+    },
   ],
+
   deploy: {
     production: {
       user: process.env.DEPLOY_USER || 'user',
@@ -20,8 +20,11 @@ module.exports = {
       path: process.env.DEPLOY_PATH || '/home/user/nodejs-pm2-deploy',
       ssh_options: `StrictHostKeyChecking=no -i ${process.env.DEPLOY_SSH_KEY || '~/.ssh/id_ed25519'}`,
       'post-deploy': `
-        bash post-build.sh
-      `.replace(/\n/g, ' '),
-    }
-  }
+        cd backend &&
+        npm install &&
+        npm run build &&
+        pm2 reload ecosystem.config.js --env production
+      `,
+    },
+  },
 };
