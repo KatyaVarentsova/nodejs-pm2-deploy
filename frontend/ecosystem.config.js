@@ -14,14 +14,14 @@ module.exports = {
       path: process.env.DEPLOY_PATH || '/home/user/nodejs-pm2-deploy',
 
       'post-deploy': `
-        export NVM_DIR="$HOME/.nvm" &&
-        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" &&
-        nvm use --lts &&
-        cd frontend &&
-        npm install &&
-        export NODE_OPTIONS=--openssl-legacy-provider &&
-        npm run build
-      `.replace(/\\n/g, ' '),
+      export NVM_DIR="$HOME/.nvm" &&
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" &&
+       nvm use --lts &&
+       cd frontend &&
+       npm install &&
+       export NODE_OPTIONS=--openssl-legacy-provider &&
+       npm run build
+       `.replace(/\n/g, ' '),
     },
   },
 };
