@@ -12,9 +12,7 @@ module.exports = {
       ref: process.env.DEPLOY_REF || 'origin/master',
       repo: process.env.DEPLOY_REPO || 'https://github.com/KatyaVarentsova/nodejs-pm2-deploy.git',
       path: process.env.DEPLOY_PATH || '/home/user/nodejs-pm2-deploy',
-      'post-deploy': `
-        bash post-build.sh
-      `.replace(/\n/g, ' '),
+      'post-deploy': 'bash frontend/post-build.sh'
     },
   },
 };
