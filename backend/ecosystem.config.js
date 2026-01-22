@@ -19,12 +19,7 @@ module.exports = {
       repo: process.env.DEPLOY_REPO || 'https://github.com/KatyaVarentsova/nodejs-pm2-deploy.git',
       path: process.env.DEPLOY_PATH || '/home/user/nodejs-pm2-deploy',
       ssh_options: `StrictHostKeyChecking=no -i ${process.env.DEPLOY_SSH_KEY || '~/.ssh/id_ed25519'}`,
-      'post-deploy': `
-        cd backend &&
-        npm install &&
-        npm run build &&
-        pm2 reload ecosystem.config.js --env production
-      `,
+      'post-deploy': 'cd backend && npm install && npm run build && pm2 reload ecosystem.config.js --env production',
     },
   },
 };
