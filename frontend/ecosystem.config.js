@@ -1,7 +1,10 @@
 module.exports = {
-  apps: [{
-    name: 'frontend',
-  }],
+  apps: [
+    {
+      name: 'frontend',
+    },
+  ],
+
   deploy: {
     production: {
       user: process.env.DEPLOY_USER || 'user',
@@ -9,12 +12,16 @@ module.exports = {
       ref: process.env.DEPLOY_REF || 'origin/master',
       repo: process.env.DEPLOY_REPO || 'https://github.com/KatyaVarentsova/nodejs-pm2-deploy.git',
       path: process.env.DEPLOY_PATH || '/home/user/nodejs-pm2-deploy',
+
       'post-deploy': `
-      cd frontend && 
-      npm install && 
-      export NODE_OPTIONS=--openssl-legacy-provider &&
-      npm run build
-      `.replace(/\n/g, ' '),
-      },
+        export NVM_DIR="$HOME/.nvm" &&
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" &&
+        nvm use --lts &&
+        cd frontend &&
+        npm install &&
+        export NODE_OPTIONS=--openssl-legacy-provider &&
+        npm run build
+      `.replace(/\\n/g, ' '),
     },
+  },
 };
