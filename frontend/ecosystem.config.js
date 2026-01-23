@@ -7,11 +7,11 @@ module.exports = {
 
   deploy: {
     production: {
-      user: process.env.DEPLOY_USER || 'user',
-      host: process.env.DEPLOY_HOST || '158.160.215.176',
-      ref: process.env.DEPLOY_REF || 'origin/master',
-      repo: process.env.DEPLOY_REPO || 'https://github.com/KatyaVarentsova/nodejs-pm2-deploy.git',
-      path: process.env.DEPLOY_PATH || '/home/user/nodejs-pm2-deploy',
+      user: process.env.DEPLOY_USER,
+      host: process.env.DEPLOY_HOST,
+      ref: process.env.DEPLOY_REF,
+      repo: process.env.DEPLOY_REPO,
+      path: process.env.DEPLOY_PATH,
       'post-deploy': 'bash frontend/post-build.sh'
     },
   },
